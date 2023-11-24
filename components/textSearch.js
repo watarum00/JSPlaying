@@ -57,7 +57,11 @@ class TextSearch extends HTMLElement{
         this.input = this.shadowRoot.querySelector('input');
         this.dropdownContent = this.shadowRoot.querySelector('.dropdown-content');
 
-        this.input.addEventListener('input', () => this.updateList());
+        ['input', 'focus'].forEach(event => {
+            this.input.addEventListener(event, () => this.updateList());
+        });
+        // ドキュメント全体のクリックイベントを監視
+        document.addEventListener('click', this.handleClickOutside.bind(this));
     }
 
     updateList() {
@@ -89,6 +93,13 @@ class TextSearch extends HTMLElement{
 
     hideDropdown() {
         this.dropdownContent.classList.remove('show');
+    }
+
+    handleClickOutside(event) {
+        // クリックされた要素が入力欄やプルダウンリスト内のものでない場合にプルダウンを非表示に
+        if (!this.contains(event.target)) {
+            this.hideDropdown();
+        }
     }
 }
 
