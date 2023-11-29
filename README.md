@@ -9,7 +9,6 @@
 
 
 ## reverse-card
-
+クリックすると表裏が反転するJSのコンポーネント  
 
 https://github.com/watarum00/JSPlaying/assets/144108007/ea380842-5cee-4e98-82c1-471d7d5cbf05
-
